@@ -1,9 +1,14 @@
-import Body from './components/Body'
-import Navbar from './components/Navbar'
+"use client"
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import Main from './components/Main';
+
+const client = new ApolloClient({
+  uri: 'http://localhost:4000/',
+  cache: new InMemoryCache(),
+});
 
 export default function Home() {
-  return (<div>
-    <Navbar/>
-    <Body/>
-  </div>)
+  return (<ApolloProvider client={client}>
+    <Main/>
+  </ApolloProvider>)
 }
